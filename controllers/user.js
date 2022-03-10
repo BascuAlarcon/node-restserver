@@ -39,16 +39,15 @@ const postUsers = async(req, res = response) => {
 
 const deleteUsers = async(req, res = response) => {
     
-    const { id } = req.params;
-    
-    // physic delete
-    //const user = await User.findByIdAndDelete(id);
+    const { id } = req.params; 
 
     // logic delete
     const user = await User.findByIdAndUpdate(id, {state: false});
+    const userAuth = req.user;
 
     res.json({ 
-        user
+        user,
+        userAuth
     });
 }
 
